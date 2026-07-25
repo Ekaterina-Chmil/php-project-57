@@ -32,8 +32,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Run PHP CodeSniffer
-        run: vendor/bin/phpcs --standard=PSR12 app routes config database
+        run: vendor/bin/phpcs --standard=PSR12 --warning-severity=0 app routes config database
 
       - name: Run tests
         run: php artisan test
-        

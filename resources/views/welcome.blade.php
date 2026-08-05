@@ -7,7 +7,7 @@
     <title>Менеджер задач</title>
 
     <!-- Подключение стилей проекта (Tailwind CSS) -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100 font-sans antialiased text-gray-900">

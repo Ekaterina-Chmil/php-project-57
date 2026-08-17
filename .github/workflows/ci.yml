@@ -37,7 +37,7 @@ jobs:
           node-version: '20'
 
       - name: Install NPM dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build assets via Vite
         run: npm run build  

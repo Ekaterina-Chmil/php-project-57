@@ -78,13 +78,20 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        // Удаляем статус
-        $taskStatus->delete();
+        // 1. Проверяем, есть ли задачи с этим статусом
+        if ($taskStatus->tasks()->exists()) {
+            flash(__('Не удалось удалить статус'))->error();
+            return redirect()->route('task_statuses.index');
+        }
 
-        // Показываем флеш
-        flash(__('Статус успешно удален'))->success();
+        // 2. Оборачиваем в try-catch для полной страховки от падения базы
+        try {
+            $taskStatus->delete();
+            flash(__('Статус успешно удален'))->success();
+        } catch (\Illuminate\Database\QueryException $e) {
+            flash(__('Не удалось удалить статус'))->error();
+        }
 
-        // Возвращаем на список
         return redirect()->route('task_statuses.index');
     }
 }

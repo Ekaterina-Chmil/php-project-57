@@ -8,9 +8,12 @@
                     Менеджер задач
                 </a>
                 <nav class="flex space-x-6 text-sm font-medium mx-auto">
-                    <a href="#" class="text-gray-500 hover:text-gray-900 transition no-underline">Задачи</a>
+                    <a href="{{ route('tasks.index') }}" 
+                        class="{{ request()->routeIs('tasks.*') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-900' }} pb-1 transition no-underline">
+                        Задачи
+                    </a>
                     <a href="{{ route('task_statuses.index') }}" 
-                       class="{{ request()->routeIs('task_statuses.index') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-900' }} pb-1 transition no-underline">
+                       class="{{ request()->routeIs('task_statuses.*') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-900' }} pb-1 transition no-underline">
                         Статусы
                     </a>
                     <a href="#" class="text-gray-500 hover:text-gray-900 transition no-underline">Метки</a>

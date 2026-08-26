@@ -1,28 +1,28 @@
-<x-app-layout>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-        <h1 class="text-4xl font-bold tracking-tight text-gray-900 mb-6">
-            Изменение статуса
-        </h1>
+@extends('layouts.app')
 
-        <!-- Форма отправляет PATCH запрос на обновление конкретного статуса -->
-        <form method="POST" action="{{ route('task_statuses.update', $taskStatus) }}" class="max-w-md bg-white p-6 rounded shadow-sm border border-gray-200">
-            @csrf
-            @method('PATCH') <!-- Это обязательно для роутов обновления в Laravel -->
+@section('content')
+<div class="grid col-span-full max-w-2xl text-stone-700 bg-white p-6 rounded-lg shadow-md mx-auto my-6">
+    <h1 class="text-3xl font-bold mb-6">{{ __('Изменение статуса') }}</h1>
 
-            <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Имя</label>
-                <input type="text" name="name" id="name" 
-                       value="{{ old('name', $taskStatus->name) }}" 
-                       class="w-full rounded-md shadow-sm border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                
-                @error('name')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+    <form method="POST" action="{{ route('task_statuses.update', $taskStatus) }}" class="space-y-4">
+        @csrf
+        @method('PATCH')
 
-            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded shadow transition text-sm">
-                Обновить
+        <!-- Имя статуса -->
+        <div>
+            <label for="name" class="block font-medium text-sm text-gray-700">{{ __('Имя') }}</label>
+            <input type="text" name="name" id="name" value="{{ old('name', $taskStatus->name) }}" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full" required>
+            @error('name')
+                <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <!-- Кнопка обновления -->
+        <div class="pt-4">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                {{ __('Обновить') }}
             </button>
-        </form>
-    </div>
-</x-app-layout>
+        </div>
+    </form>
+</div>
+@endsection

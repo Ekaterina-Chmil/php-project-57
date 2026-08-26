@@ -12,25 +12,19 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
+            <!-- Подключаем наше меню навигации -->
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="margin-top: 2rem;">
+            <!-- Вывод флеш-сообщений (если используются в проекте) -->
+            <div class="max-w-7xl mx-auto mt-4 px-4 sm:px-6 lg:px-8">
                 @include('flash::message')
             </div>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
+            <!-- Главный контент страницы -->
+            <main class="py-4">
+                @yield('content')
             </main>
         </div>
     </body>
 </html>
+

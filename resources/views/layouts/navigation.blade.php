@@ -16,7 +16,10 @@
                        class="{{ request()->routeIs('task_statuses.*') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-900' }} pb-1 transition no-underline">
                         Статусы
                     </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-900 transition no-underline">Метки</a>
+                    <a href="{{ route('labels.index') }}" 
+                        class="{{ request()->routeIs('labels.*') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-900' }} pb-1 transition no-underline">
+                        Метки
+                    </a>
                 </nav>
             </div>
 

@@ -52,12 +52,12 @@
             <div>
                 <label for="labels" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Метки') }}</label>
                 <select name="labels[]" id="labels" multiple class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm h-32 p-2">
-                    <option value="1">{{ __('ошибка') }}</option>
-                    <option value="2">{{ __('документация') }}</option>
-                    <option value="3">{{ __('дубликат') }}</option>
-                    <option value="4">{{ __('доработка') }}</option>
+                    @foreach($labels as $id => $name)
+                        <option value="{{ $id }}" {{ (is_array(old('labels')) && in_array($id, old('labels'))) ? 'selected' : '' }}>{{ $name }}</option>
+                    @endforeach
                 </select>
             </div>
+
 
             <!-- Кнопка -->
             <div class="pt-2">

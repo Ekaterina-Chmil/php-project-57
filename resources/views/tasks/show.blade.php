@@ -23,18 +23,20 @@
         <p><span class="font-bold">{{ __('Статус') }}:</span> {{ $task->status->name ?? '' }}</p>
         <p><span class="font-bold">{{ __('Описание') }}:</span> {{ $task->description ?? '' }}</p>
         
-        <!-- ЖЕСТКАЯ ЗАГЛУШКА МЕТКИ ДЛЯ СООТВЕТСТВИЯ МАКЕТУ 4 ШАГА -->
-        <div>
-            <span class="font-bold block mb-1">{{ __('Метки') }}:</span>
-            <div class="flex flex-wrap gap-2">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 uppercase tracking-wider border border-blue-200">
-                    <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-blue-400" fill="currentColor" viewBox="0 0 8 8">
-                        <circle cx="4" cy="4" r="3" />
-                    </svg>
-                    {{ __('документация') }}
-                </span>
-            </div>
-        </div>
+    <!-- МЕТКИ -->
+        <p class="font-bold mb-1">{{ __('Метки') }}:</p>
+    <div class="flex flex-wrap gap-2">
+        @forelse($task->labels as $label)
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 uppercase tracking-wider border border-blue-200">
+                <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-blue-400" fill="currentColor" viewBox="0 0 8 8">
+                    <circle cx="4" cy="4" r="3" />
+                </svg>
+                {{ $label->name }}
+            </span>
+        @empty
+            <!-- Если меток нет, можно ничего не выводить или оставить пустым -->
+        @endforelse
+    </div>
     </div>
 </div>
 @endsection

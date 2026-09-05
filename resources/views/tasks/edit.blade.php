@@ -51,13 +51,12 @@
 
             <!-- МЕТКИ -->
             <div>
-                <label for="labels" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Метки') }}</label>
-                <select name="labels[]" id="labels" multiple class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm h-32 p-2">
-                    <option value="" disabled class="text-gray-400 italic">ошибка</option>
-                    <option value="" disabled class="text-gray-400 italic">документация</option>
-                    <option value="" disabled class="text-gray-400 italic">дубликат</option>
-                    <option value="" disabled class="text-gray-400 italic">доработка</option>
-                </select>
+            <label for="labels" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Метки') }}</label>
+            <select name="labels[]" id="labels" multiple class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm h-32 p-2">
+                @foreach($labels as $id => $name)
+                    <option value="{{ $id }}" {{ (is_array(old('labels', $task->labels->pluck('id')->toArray())) && in_array($id, old('labels', $task->labels->pluck('id')->toArray()))) ? 'selected' : '' }}>{{ $name }}</option>
+                @endforeach
+            </select>
             </div>
 
             <!-- Кнопка -->

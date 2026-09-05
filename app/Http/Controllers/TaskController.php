@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
+use App\Models\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,8 +49,9 @@ class TaskController extends Controller
     {
         $statuses = TaskStatus::pluck('name', 'id');
         $users = User::pluck('name', 'id');
+        $labels = Label::pluck('name', 'id');
 
-        return view('tasks.create', compact('statuses', 'users'));
+        return view('tasks.create', compact('statuses', 'users', 'labels'));
     }
 
     /**
@@ -62,16 +64,22 @@ class TaskController extends Controller
             'description' => 'nullable|string',
             'status_id' => 'required|exists:task_statuses,id',
             'assigned_to_id' => 'nullable|exists:users,id',
+            'labels' => 'nullable|array',
         ]);
 
         $task = new Task();
         $task->fill($data);
-        $task->created_by_id = Auth::id(); // Наша фишка: текущий юзер становится создателем
+        $task->created_by_id = Auth::id();
         $task->save();
 
-        flash(__('Задача успешно создана'))->success();
+        // Синхронизируем метки с задачей (если они были выбраны)
+        if ($request->has('labels')) {
+            $task->labels()->sync($request->input('labels'));
 
-        return redirect()->route('tasks.index');
+            flash(__('Задача успешно создана'))->success();
+
+            return redirect()->route('tasks.index');
+        }
     }
 
     /**
@@ -89,8 +97,9 @@ class TaskController extends Controller
     {
         $statuses = TaskStatus::pluck('name', 'id');
         $users = User::pluck('name', 'id');
+        $labels = Label::pluck('name', 'id');
 
-        return view('tasks.edit', compact('task', 'statuses', 'users'));
+        return view('tasks.edit', compact('task', 'statuses', 'users', 'labels'));
     }
 
     /**
@@ -103,9 +112,13 @@ class TaskController extends Controller
             'description' => 'nullable|string',
             'status_id' => 'required|exists:task_statuses,id',
             'assigned_to_id' => 'nullable|exists:users,id',
+            'labels' => 'nullable|array',
         ]);
 
         $task->update($data);
+
+        // Обновляем связи в связующей таблице
+        $task->labels()->sync($request->input('labels', []));
 
         flash(__('Задача успешно изменена'))->success();
 

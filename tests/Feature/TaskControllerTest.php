@@ -45,6 +45,7 @@ class TaskControllerTest extends TestCase
             'description' => 'Описание задачи',
             'status_id' => $this->status->id,
             'assigned_to_id' => $this->user->id,
+            'labels' => [],
         ];
 
         $response = $this->actingAs($this->user)->post(route('tasks.store'), $data);
@@ -91,6 +92,7 @@ class TaskControllerTest extends TestCase
         $data = [
             'name' => 'Измененное имя',
             'status_id' => $this->status->id,
+            'labels' => [],
         ];
 
         $response = $this->actingAs($this->user)->patch(route('tasks.update', $task), $data);

@@ -10,7 +10,7 @@
         <form method="GET" action="{{ route('tasks.index') }}" class="flex flex-wrap items-center gap-2 bg-transparent p-0 border-0">
             
             <!-- Статус -->
-            <div class="w-36">
+            <div class="w-40">
                 <select name="filter[status_id]" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2">
                     <option value="">{{ __('Статус') }}</option>
                     @foreach($statuses as $id => $name)
@@ -20,7 +20,7 @@
             </div>
 
             <!-- Автор -->
-            <div class="w-64">
+            <div class="w-40">
                 <select name="filter[created_by_id]" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2">
                     <option value="">{{ __('Автор') }}</option>
                     @foreach($users as $id => $name)
@@ -30,7 +30,7 @@
             </div>
 
             <!-- Исполнитель -->
-            <div class="w-64">
+            <div class="w-40">
                 <select name="filter[assigned_to_id]" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2">
                     <option value="">{{ __('Исполнитель') }}</option>
                     @foreach($users as $id => $name)
@@ -39,17 +39,20 @@
                 </select>
             </div>
 
+            <!-- Метки -->
+            <div class="w-40">
+                <select name="filter[labels]" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2">
+                    <option value="">{{ __('Метки') }}</option>
+                    @foreach($labels as $id => $name)
+                        <option value="{{ $id }}" {{ request()->input('filter.labels') == $id ? 'selected' : '' }}>{{ $name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <!-- Кнопка Применить -->
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition text-sm whitespace-nowrap shadow-sm">
                 {{ __('Применить') }}
             </button>
-
-            <!-- Кнопка Сбросить -->
-            @if(request()->filled('filter'))
-                <a href="{{ route('tasks.index') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded transition text-sm whitespace-nowrap shadow-sm">
-                    {{ __('Сбросить') }}
-                </a>
-            @endif
 
             <!-- Кнопка Создать задачу -->
             @auth

@@ -77,4 +77,3 @@ class TaskStatusControllerTest extends TestCase
         $this->assertDatabaseMissing('task_statuses', ['id' => $status->id]);
     }
 }
-

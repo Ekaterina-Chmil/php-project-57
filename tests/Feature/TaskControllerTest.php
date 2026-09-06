@@ -134,4 +134,17 @@ class TaskControllerTest extends TestCase
         // Проверяем, что задача осталась в базе данных невредимой
         $this->assertDatabaseHas('tasks', ['id' => $task->id]);
     }
+
+    public function testIndexFilters(): void
+    {
+        $task = \App\Models\Task::factory()->create([
+            'status_id' => $this->status->id,
+            'created_by_id' => $this->user->id,
+        ]);
+
+        $response = $this->actingAs($this->user)->get(route('tasks.index', ['filter' => ['status_id' => $this->status->id]]));
+        
+        $response->assertOk();
+        $response->assertSee($task->name);
+    }
 }

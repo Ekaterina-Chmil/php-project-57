@@ -11,7 +11,8 @@
         "laravel-lang/lang": "^15.33",
         "laravel/framework": "^13.8",
         "laravel/tinker": "^3.0",
-        "sentry/sentry-laravel": "^4.27"
+        "sentry/sentry-laravel": "^4.27",
+        "spatie/laravel-query-builder": "^7.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

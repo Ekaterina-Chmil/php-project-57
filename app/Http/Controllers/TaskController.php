@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class TaskController extends Controller
 {
@@ -19,27 +21,29 @@ class TaskController extends Controller
         // Получаем списки для выпадающих меню фильтра [id => name]
         $statuses = TaskStatus::pluck('name', 'id');
         $users = User::pluck('name', 'id');
+        $labels = Label::pluck('name', 'id');
 
-        // Начинаем запрос к задачам и сразу подгружаем связи (чтобы не было N+1)
-        $query = Task::with(['status', 'creator', 'assignee']);
+        $filters = array_filter($request->input('filter', []), function ($value) {
+            return $value !== null && $value !== '';
+        });
 
-        // Фильтрация (если в форме выбрали фильтр)
-        if ($request->filled('filter.status_id')) {
-            $query->where('status_id', $request->input('filter.status_id'));
-        }
+        // Подменяем очищенный массив в запрос, чтобы Spatie видел только заполненные поля
+        $request->merge(['filter' => $filters]);
 
-        if ($request->filled('filter.created_by_id')) {
-            $query->where('created_by_id', $request->input('filter.created_by_id'));
-        }
+        // Используем QueryBuilder вместо обычного Task::query()
+        $tasks = QueryBuilder::for(Task::class)
+            ->with(['status', 'creator', 'assignee', 'labels'])
+            ->allowedFilters(
+                AllowedFilter::exact('status_id'),
+                AllowedFilter::exact('created_by_id'),
+                AllowedFilter::exact('assigned_to_id'),
+                // Фильтрация по меткам через связующую таблицу (многие-ко-многим)
+                AllowedFilter::exact('labels', 'labels.id'),
+            )
+            ->paginate(15)
+            ->withQueryString();
 
-        if ($request->filled('filter.assigned_to_id')) {
-            $query->where('assigned_to_id', $request->input('filter.assigned_to_id'));
-        }
-
-        // Пагинация по 15 задач на страницу + сохраняем параметры фильтра в ссылках пагинации
-        $tasks = $query->paginate(15)->withQueryString();
-
-        return view('tasks.index', compact('tasks', 'statuses', 'users'));
+        return view('tasks.index', compact('tasks', 'statuses', 'users', 'labels'));
     }
 
     /**

@@ -39,6 +39,17 @@
         }
     },
     "scripts": {
+        "pre-install-cmd": [
+            "git config --global --add safe.directory /project/code || true"
+        ],
+        "code-setup": [
+            "composer install",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate",
+            "@php artisan migrate --force",
+            "npm install --ignore-scripts",
+            "npm run build"
+        ],
         "setup": [
             "composer install",
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",

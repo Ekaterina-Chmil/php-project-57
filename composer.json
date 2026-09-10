@@ -79,6 +79,9 @@
             "dont-discover": []
         }
     },
+    "provide": {
+        "ext-bcmath": "*"
+    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",

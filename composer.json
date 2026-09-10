@@ -8,7 +8,7 @@
     "require": {
         "php": "^8.3",
         "laracasts/flash": "^3.2",
-        "laravel-lang/lang": "^15.33",
+        "laravel-lang/lang": "^13.0",
         "laravel/framework": "^13.8",
         "laravel/tinker": "^3.0",
         "sentry/sentry-laravel": "^4.27",
@@ -80,9 +80,6 @@
         }
     },
     "config": {
-        "ignore-platform-reqs": {
-            "ext-bcmath": true
-        },
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,

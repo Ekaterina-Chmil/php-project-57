@@ -80,6 +80,9 @@
         }
     },
     "config": {
+        "ignore-platform-reqs": {
+            "ext-bcmath": true
+        },
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,

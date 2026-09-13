@@ -8,9 +8,10 @@
     "require": {
         "php": "^8.3",
         "laracasts/flash": "^3.2",
-        "laravel-lang/lang": "^13.0",
+        "laravel-lang/lang": "^15.33",
         "laravel/framework": "^13.8",
         "laravel/tinker": "^3.0",
+        "phpseclib/bcmath_compat": "^2.0",
         "sentry/sentry-laravel": "^4.27",
         "spatie/laravel-query-builder": "^7.3"
     },
@@ -39,17 +40,6 @@
         }
     },
     "scripts": {
-        "pre-install-cmd": [
-            "git config --global --add safe.directory /project/code || true"
-        ],
-        "code-setup": [
-            "composer install",
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "@php artisan key:generate",
-            "@php artisan migrate --force",
-            "npm install --ignore-scripts",
-            "npm run build"
-        ],
         "setup": [
             "composer install",
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
@@ -89,9 +79,6 @@
         "laravel": {
             "dont-discover": []
         }
-    },
-    "provide": {
-        "ext-bcmath": "*"
     },
     "config": {
         "optimize-autoloader": true,

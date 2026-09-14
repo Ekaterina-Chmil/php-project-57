@@ -22,4 +22,4 @@ RUN npm run build
 
 RUN > database/database.sqlite
 
-CMD ["bash", "-c", "php artisan migrate:refresh --seed --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
+CMD ["sh", "-c", "php artisan migrate:refresh --seed --force && php -S 0.0.0.0:$PORT -t public"]

@@ -1,14 +1,23 @@
+setup:
+	composer install
+	cp -n .env.example .env || true
+	php artisan key:generate
+	npm install
+	npm run build
+	php artisan migrate --force
+
 code-setup:
 	composer install
-	npm ci
+	cp -n .env.example .env || true
+	php artisan key:generate
+	npm install
 	npm run build
-	cp -n code-env code/.env || true
-
-test:
-	composer exec -- phpunit tests
 
 start:
-	php -S localhost:8000 -t public
+	php artisan serve --host=0.0.0.0 --port=$(PORT)
+
+test:
+	php artisan test
 
 lint:
-	composer exec -- phpcs --standard=PSR12 src tests
+	composer exec phpcs -- --standard=PSR12 app tests

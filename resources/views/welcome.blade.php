@@ -14,9 +14,11 @@
     @include('layouts.navigation')
 
     <!-- Вывод флеш-сообщений -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-        @include('flash::message')
-     </div>
+    @if (session()->has('flash_notification'))
+        @foreach (collect(session('flash_notification'))->all() as $message)
+            <div class="max-w-7xl mx-auto mt-4 px-4 sm:px-6 lg:px-8"><div role="alert" class="p-4 mb-4 text-sm text-green-800 bg-green-50 rounded-lg border border-green-200">{{ trim(is_array($message) ? $message['message'] : $message->message) }}</div></div>
+        @endforeach
+    @endif
 
     <!-- Основной контент страницы -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">

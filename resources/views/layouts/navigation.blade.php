@@ -25,27 +25,29 @@
 
             <!-- Правая сторона: Кнопки Входа/Регистрации/Выхода -->
             <div class="flex items-center space-x-4">
-                @if (Route::has('login'))
-                    @auth
-                        <!-- Пользователь залогинен: показываем синюю кнопку Выход -->
-                        <form method="POST" action="{{ route('logout') }}" class="inline">
-                            @csrf
-                            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded shadow text-sm font-medium hover:bg-blue-700 transition">
-                                Выход
-                            </button>
-                        </form>
-                    @else
-                        <!-- Гость: показываем Вход и Регистрацию -->
-                        <a href="{{ route('login') }}" class="bg-blue-600 text-white px-4 py-2 rounded shadow text-sm font-medium hover:bg-blue-700 transition no-underline">
-                            Вход
+            @if (Route::has('login'))
+                @auth
+                    <!-- Пользователь залогинен: показываем синюю кнопку Выход как ссылку <a> -->
+                    <a href="{{ route('logout') }}" 
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    class="bg-blue-600 text-white px-4 py-2 rounded shadow text-sm font-medium hover:bg-blue-700 transition no-underline inline-block">
+                        Выход
+                    </a>
+                    <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
+                        @csrf
+                    </form>
+                @else
+                    <!-- Гость: показываем Вход и Регистрацию -->
+                    <a href="{{ route('login') }}" class="bg-blue-600 text-white px-4 py-2 rounded shadow text-sm font-medium hover:bg-blue-700 transition no-underline">
+                        Вход
+                    </a>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="bg-blue-600 text-white px-4 py-2 rounded shadow text-sm font-medium hover:bg-blue-700 transition no-underline">
+                            Регистрация
                         </a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="bg-blue-600 text-white px-4 py-2 rounded shadow text-sm font-medium hover:bg-blue-700 transition no-underline">
-                                Регистрация
-                            </a>
-                        @endif
-                    @endauth
-                @endif
+                    @endif
+                @endauth
+            @endif
             </div>
         </div>
     </div>

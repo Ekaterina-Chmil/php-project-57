@@ -15,10 +15,12 @@
             <!-- Подключаем наше меню навигации -->
             @include('layouts.navigation')
 
-            <!-- Вывод флеш-сообщений (если используются в проекте) -->
-            <div class="max-w-7xl mx-auto mt-4 px-4 sm:px-6 lg:px-8">
-                @include('flash::message')
-            </div>
+            <!-- Вывод флеш-сообщений -->
+            @if (session()->has('flash_notification'))
+                @foreach (collect(session('flash_notification'))->all() as $message)
+                    <div class="max-w-7xl mx-auto mt-4 px-4 sm:px-6 lg:px-8"><div role="alert" class="p-4 mb-4 text-sm text-green-800 bg-green-50 rounded-lg border border-green-200">{{ trim(is_array($message) ? $message['message'] : $message->message) }}</div></div>
+                @endforeach
+            @endif
 
             <!-- Главный контент страницы -->
             <main class="py-4">

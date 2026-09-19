@@ -34,6 +34,7 @@ class LabelController extends Controller
             'description' => 'nullable|string',
         ], [
             'name.required' => 'Это обязательное поле',
+            'name.unique' => 'Метка с таким именем уже существует',
         ]);
 
         Label::create($data);
@@ -61,6 +62,7 @@ class LabelController extends Controller
             'description' => 'nullable|string',
         ], [
             'name.required' => 'Это обязательное поле',
+            'name.unique' => 'Метка с таким именем уже существует',
         ]);
 
         $label->update($data);

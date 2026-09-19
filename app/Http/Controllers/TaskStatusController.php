@@ -32,6 +32,8 @@ class TaskStatusController extends Controller
         // Валидация: поле name обязательно и должно быть строкой
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:task_statuses,name',
+        ], [
+            'name.required' => 'Это обязательное поле',
         ]);
 
         // Создаем новый статус
@@ -65,6 +67,8 @@ class TaskStatusController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:task_statuses,name,' . $taskStatus->id,
+        ], [
+            'name.required' => 'Это обязательное поле',
         ]);
 
         $taskStatus->update($validated);
@@ -87,7 +91,7 @@ class TaskStatusController extends Controller
         // 2. Оборачиваем в try-catch для полной страховки от падения базы
         try {
             $taskStatus->delete();
-            flash(__('Статус успешно удален'))->success();
+            flash(__('Статус успешно удалён'))->success();
         } catch (\Illuminate\Database\QueryException $e) {
             flash(__('Не удалось удалить статус'))->error();
         }

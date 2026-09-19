@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto my-6 px-4 text-stone-700">
-    <!-- ТОНКИЙ ЗАГОЛОВОК -->
-    <h1 class="text-4xl font-normal text-gray-900 mb-6 tracking-tight">{{ __('Изменение задачи') }}</h1>
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        
+        <!-- ЗАГОЛОВОК -->
+        <h1 class="text-4xl font-bold mb-6 text-stone-700">{{ __('Изменение задачи') }}</h1>
 
-    <!-- БЕЛАЯ КАРТОЧКА СЛЕВА -->
-    <div class="max-w-2xl bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-        <form method="POST" action="{{ route('tasks.update', $task) }}" class="space-y-4">
-            @csrf
-            @method('PATCH')
+        <!-- БЕЛАЯ КАРТОЧКА СЛЕВА -->
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
+            <form method="POST" action="{{ route('tasks.update', $task) }}" class="space-y-4" novalidate>
+                @csrf
+                @method('PATCH')
 
             <!-- Имя -->
             <div>
@@ -67,5 +69,6 @@
             </div>
         </form>
     </div>
+</div>
 </div>
 @endsection

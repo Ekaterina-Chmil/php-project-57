@@ -69,6 +69,9 @@ class TaskController extends Controller
             'status_id' => 'required|exists:task_statuses,id',
             'assigned_to_id' => 'nullable|exists:users,id',
             'labels' => 'nullable|array',
+        ], [
+            'name.required' => 'Это обязательное поле',
+            'status_id.required' => 'Это обязательное поле',
         ]);
 
         $task = new Task();
@@ -79,11 +82,11 @@ class TaskController extends Controller
         // Синхронизируем метки с задачей (если они были выбраны)
         if ($request->has('labels')) {
             $task->labels()->sync($request->input('labels'));
+        }
 
-            flash(__('Задача успешно создана'))->success();
+        flash(__('Задача успешно создана'))->success();
 
             return redirect()->route('tasks.index');
-        }
     }
 
     /**
@@ -117,6 +120,9 @@ class TaskController extends Controller
             'status_id' => 'required|exists:task_statuses,id',
             'assigned_to_id' => 'nullable|exists:users,id',
             'labels' => 'nullable|array',
+        ], [
+            'name.required' => 'Это обязательное поле',
+            'status_id.required' => 'Это обязательное поле',
         ]);
 
         $task->update($data);

@@ -1,13 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto my-6 px-4 text-stone-700">
-    <h1 class="text-4xl font-normal text-gray-900 mb-6 tracking-tight">{{ __('Изменение метки') }}</h1>
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        
+        {{-- Заголовок --}}
+        <h1 class="text-4xl font-bold mb-6 text-stone-700">{{ __('Изменение метки') }}</h1>
 
-    <div class="max-w-2xl bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-        <form method="POST" action="{{ route('labels.update', $label) }}" class="space-y-4">
-            @csrf
-            @method('PATCH')
+        {{-- Карточка формы --}}
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
+            <form method="POST" action="{{ route('labels.update', $label) }}" class="space-y-4" novalidate>
+                @csrf
+                @method('PATCH')
 
             <!-- Имя метки -->
             <div>
@@ -35,5 +39,6 @@
             </div>
         </form>
     </div>
+</div>
 </div>
 @endsection

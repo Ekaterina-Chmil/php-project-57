@@ -32,6 +32,8 @@ class LabelController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255|unique:labels,name',
             'description' => 'nullable|string',
+        ], [
+            'name.required' => 'Это обязательное поле',
         ]);
 
         Label::create($data);
@@ -57,6 +59,8 @@ class LabelController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255|unique:labels,name,' . $label->id,
             'description' => 'nullable|string',
+        ], [
+            'name.required' => 'Это обязательное поле',
         ]);
 
         $label->update($data);

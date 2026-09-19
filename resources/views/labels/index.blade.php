@@ -3,6 +3,7 @@
 @section('content')
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        
         {{-- Заголовок --}}
         <h1 class="text-4xl font-bold mb-6 text-stone-700">{{ __('Метки') }}</h1>
 

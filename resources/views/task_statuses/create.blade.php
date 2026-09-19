@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="grid col-span-full max-w-2xl text-stone-700 bg-white p-6 rounded-lg shadow-md mx-auto my-6">
-    <h1 class="text-3xl font-bold mb-6">{{ __('Создать статус') }}</h1>
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        
+        <h1 class="text-4xl font-bold mb-6 text-stone-700">{{ __('Создать статус') }}</h1>
 
-    <form method="POST" action="{{ route('task_statuses.store') }}" class="space-y-4">
-        @csrf
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
+            <form method="POST" action="{{ route('task_statuses.store') }}" class="space-y-4" novalidate>
+                @csrf
 
         <!-- Имя статуса -->
         <div>
@@ -23,5 +26,7 @@
             </button>
         </div>
     </form>
+</div>
+</div>
 </div>
 @endsection

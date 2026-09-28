@@ -1,17 +1,31 @@
 # Task Manager (Менеджер задач)
 
-**Демо-версия приложения:** [https://php-project-57-ffxd.onrender.com](https://php-project-57-ffxd.onrender.com)
-
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/Ekaterina-Chmil/php-project-57/actions/workflows/hexlet-check.yml"><img src="https://github.com/Ekaterina-Chmil/php-project-57/actions/workflows/hexlet-check.yml/badge.svg" alt="Hexlet Check"></a>
 <a href="https://github.com/Ekaterina-Chmil/php-project-57/actions/workflows/ci.yml"><img src="https://github.com/Ekaterina-Chmil/php-project-57/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="https://sonarcloud.io/summary/new_code?id=Ekaterina-Chmil_php-project-57"><img src="https://sonarcloud.io/api/project_badges/measure?project=Ekaterina-Chmil_php-project-57&metric=alert_status" alt="Quality Gate Status"></a>
+<a href="https://sonarcloud.io/summary/new_code?id=Ekaterina-Chmil_php-project-57"><img src="https://sonarcloud.io/api/project_badges/measure?project=Ekaterina-Chmil_php-project-57&metric=coverage" alt="Coverage"></a>
 </p>
+
+## Описание
+Task Manager — это веб-приложение для управления задачами, написанное на Laravel. 
+Проект реализует базовый CRUD, аутентификацию пользователей и позволяет создавать, редактировать и удалять задачи, а также назначать исполнителей.
+
+**Демо-версия приложения:** [https://php-project-57-ffxd.onrender.com](https://php-project-57-ffxd.onrender.com)
+
+## Системные требования
+Для локального развертывания вам понадобятся:
+- PHP 8.2 или выше
+- Composer
+- Node.js & npm
+- База данных (SQLite, MySQL или PostgreSQL)
+
+## Установка
+- git clone https://github.com/Ekaterina-Chmil/php-project-57.git
+- cd php-project-57
+- make install
 
 ## About Laravel
 

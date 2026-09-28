@@ -21,3 +21,6 @@ test:
 
 lint:
 	composer exec phpcs -- --standard=PSR12 app tests
+
+test-coverage:
+	XDEBUG_MODE=coverage php artisan test --log-junit=tests/report.xml --coverage-clover=tests/coverage.xml

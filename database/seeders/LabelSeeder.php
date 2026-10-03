@@ -13,10 +13,27 @@ class LabelSeeder extends Seeder
      */
     public function run(): void
     {
-        $labels = ['ошибка', 'доработка', 'документация', 'дубликат'];
+        $labels = [
+            [
+                'name' => 'ошибка',
+                'description' => 'Критические баги и поломки, которые нужно чинить в первую очередь'
+            ],
+            [
+                'name' => 'доработка',
+                'description' => 'Новые функции или улучшения, предложенные заказчиком'
+            ],
+            [
+                'name' => 'маркетинг',
+                'description' => 'Задачи, связанные с рекламой, продвижением и текстами'
+            ],
+            [
+                'name' => 'срочно',
+                'description' => 'Горящие задачи с близким дедлайном'
+            ],
+        ];
 
-        foreach ($labels as $labelName) {
-            Label::create(['name' => $labelName]);
+        foreach ($labels as $labelData) {
+            Label::create($labelData);
         }
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
 use App\Models\Label;
+use App\Http\Requests\TaskRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -61,18 +62,9 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status_id' => 'required|exists:task_statuses,id',
-            'assigned_to_id' => 'nullable|exists:users,id',
-            'labels' => 'nullable|array',
-        ], [
-            'name.required' => 'Это обязательное поле',
-            'status_id.required' => 'Это обязательное поле',
-        ]);
+        $data = $request->validated();
 
         $task = new Task();
         $task->fill($data);
@@ -112,18 +104,9 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(TaskRequest $request, Task $task)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status_id' => 'required|exists:task_statuses,id',
-            'assigned_to_id' => 'nullable|exists:users,id',
-            'labels' => 'nullable|array',
-        ], [
-            'name.required' => 'Это обязательное поле',
-            'status_id.required' => 'Это обязательное поле',
-        ]);
+        $data = $request->validated();
 
         $task->update($data);
 

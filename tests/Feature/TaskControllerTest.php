@@ -130,7 +130,7 @@ class TaskControllerTest extends TestCase
 
         $response = $this->actingAs($otherUser)->delete(route('tasks.destroy', $task));
 
-        $response->assertRedirect(route('tasks.index'));
+        $response->assertStatus(403);
         // Проверяем, что задача осталась в базе данных невредимой
         $this->assertDatabaseHas('tasks', ['id' => $task->id]);
     }

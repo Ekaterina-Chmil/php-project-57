@@ -1,5 +1,5 @@
 <x-guest-layout>
-<h2 class="text-2xl font-semibold text-center text-gray-800 mt-2 mb-6">Менеджер задач</h2>
+<h2 class="text-2xl font-semibold text-center text-gray-800 mt-2 mb-6">{{ __('views.app_name') }}</h2>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

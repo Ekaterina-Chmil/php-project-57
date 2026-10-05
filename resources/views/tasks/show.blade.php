@@ -5,7 +5,7 @@
     <!-- ИСПРАВЛЕННЫЙ ЗАГОЛОВОК С ШЕСТЕРЁНКОЙ В ОДНУ СТРОКУ -->
     <div class="flex items-center gap-2 mb-6">
         <h1 class="text-4xl font-normal text-gray-900 tracking-tight">
-            {{ __('Просмотр задачи') }}: {{ $task->name }}
+            {{ __('views.tasks.show') }}: {{ $task->name }}
         </h1>
         @auth
             <a href="{{ route('tasks.edit', $task) }}" class="text-gray-400 hover:text-gray-600 transition-colors ml-1">
@@ -19,12 +19,12 @@
 
     <!-- БЕЛАЯ КАРТОЧКА -->
     <div class="max-w-2xl bg-white p-6 rounded-lg shadow-sm border border-gray-100 space-y-3">
-        <p><span class="font-bold">{{ __('Имя') }}:</span> {{ $task->name }}</p>
-        <p><span class="font-bold">{{ __('Статус') }}:</span> {{ $task->status->name ?? '' }}</p>
-        <p><span class="font-bold">{{ __('Описание') }}:</span> {{ $task->description ?? '' }}</p>
+        <p><span class="font-bold">{{ __('views.attributes.name') }}:</span> {{ $task->name }}</p>
+        <p><span class="font-bold">{{ __('views.attributes.status') }}:</span> {{ $task->status->name ?? '' }}</p>
+        <p><span class="font-bold">{{ __('views.attributes.description') }}:</span> {{ $task->description ?? '' }}</p>
         
     <!-- МЕТКИ -->
-        <p class="font-bold mb-1">{{ __('Метки') }}:</p>
+        <p class="font-bold mb-1">{{ __('views.attributes.labels') }}:</p>
     <div class="flex flex-wrap gap-2">
         @forelse($task->labels as $label)
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 uppercase tracking-wider border border-blue-200">

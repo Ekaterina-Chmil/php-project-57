@@ -5,7 +5,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         
         {{-- Заголовок --}}
-        <h1 class="text-4xl font-bold mb-6 text-stone-700">{{ __('Изменение статуса') }}</h1>
+        <h1 class="text-4xl font-bold mb-6 text-stone-700">{{ __('views.statuses.edit') }}</h1>
 
         {{-- Карточка формы слева --}}
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
@@ -15,7 +15,7 @@
 
         <!-- Имя статуса -->
         <div>
-            <label for="name" class="block font-medium text-sm text-gray-700">{{ __('Имя') }}</label>
+            <label for="name" class="block font-medium text-sm text-gray-700">{{ __('views.attributes.name') }}</label>
             <input type="text" name="name" id="name" value="{{ old('name', $taskStatus->name) }}" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full" required>
             @error('name')
                 <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
@@ -25,7 +25,7 @@
         <!-- Кнопка обновления -->
         <div class="pt-4">
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                {{ __('Обновить') }}
+                {{ __('views.buttons.update') }}
             </button>
         </div>
     </form>

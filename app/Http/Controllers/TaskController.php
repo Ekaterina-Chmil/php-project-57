@@ -11,12 +11,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    use AuthorizesRequests;
+
     public function index(Request $request)
     {
         // Получаем списки для выпадающих меню фильтра [id => name]
@@ -123,11 +123,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        // Наша фишка: проверяем, что удаляет именно создатель задачи
-        if ($task->created_by_id !== Auth::id()) {
-            flash(__('Не удалось удалить задачу'))->error();
-            return redirect()->route('tasks.index');
-        }
+        // Проверяем права через политику TaskPolicy (метод delete)
+        $this->authorize('delete', $task);
 
         $task->delete();
 

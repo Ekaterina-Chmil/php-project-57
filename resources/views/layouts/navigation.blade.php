@@ -5,20 +5,20 @@
             <!-- Левая сторона: Логотип/Название и Меню по центру -->
             <div class="flex items-center justify-between flex-1 mr-10">
                 <a href="/" class="text-xl font-bold tracking-tight text-gray-900 no-underline">
-                    Менеджер задач
+                    {{ __('views.app_name') }}
                 </a>
                 <nav class="flex space-x-6 text-sm font-medium mx-auto">
                     <a href="{{ route('tasks.index') }}" 
                         class="{{ request()->routeIs('tasks.*') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-900' }} pb-1 transition no-underline">
-                        Задачи
+                        {{ __('views.tasks.index') }}
                     </a>
                     <a href="{{ route('task_statuses.index') }}" 
                        class="{{ request()->routeIs('task_statuses.*') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-900' }} pb-1 transition no-underline">
-                        Статусы
+                       {{ __('views.statuses.index') }}
                     </a>
                     <a href="{{ route('labels.index') }}" 
                         class="{{ request()->routeIs('labels.*') ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-900' }} pb-1 transition no-underline">
-                        Метки
+                        {{ __('views.labels.index') }}
                     </a>
                 </nav>
             </div>
@@ -31,19 +31,19 @@
                     <a href="{{ route('logout') }}" 
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     class="bg-blue-600 text-white px-4 py-2 rounded shadow text-sm font-medium hover:bg-blue-700 transition no-underline inline-block">
-                        Выход
+                        {{ __('views.buttons.logout') }}
                     </a>
                     <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
                         @csrf
                     </form>
                 @else
-                    <!-- Гость: показываем Вход и Регистрацию -->
+                    <!-- Гость: показываем {{ __('views.buttons.login') }} и Регистрацию -->
                     <a href="{{ route('login') }}" class="bg-blue-600 text-white px-4 py-2 rounded shadow text-sm font-medium hover:bg-blue-700 transition no-underline">
-                        Вход
+                        {{ __('views.buttons.login') }}
                     </a>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="bg-blue-600 text-white px-4 py-2 rounded shadow text-sm font-medium hover:bg-blue-700 transition no-underline">
-                            Регистрация
+                            {{ __('views.buttons.register') }}
                         </a>
                     @endif
                 @endauth

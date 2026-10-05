@@ -12,7 +12,7 @@ class TaskStatusController extends Controller
      */
     public function index()
     {
-        $taskStatuses = \App\Models\TaskStatus::all(); // Получаем все статусы из БД
+        $taskStatuses = TaskStatus::all(); // Получаем все статусы из БД
         return view('task_statuses.index', compact('taskStatuses')); // Показываем представление
     }
 
@@ -43,14 +43,6 @@ class TaskStatusController extends Controller
         // Показываем флеш-сообщение и перенаправляем на список
         flash()->success('Статус успешно создан');
         return redirect()->route('task_statuses.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(TaskStatus $taskStatus)
-    {
-        //
     }
 
     /**

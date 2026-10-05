@@ -5,13 +5,13 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         
         {{-- Заголовок --}}
-        <h1 class="text-4xl font-bold mb-6 text-stone-700">{{ __('Метки') }}</h1>
+        <h1 class="text-4xl font-bold mb-6 text-stone-700">{{ __('views.labels.index') }}</h1>
 
         {{-- Кнопка создания --}}
         @auth
             <div class="mb-6">
                 <a href="{{ route('labels.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow text-sm font-medium transition no-underline inline-block">
-                    {{ __('Создать метку') }}
+                    {{ __('views.labels.create') }}
                 </a>
             </div>
         @endauth
@@ -22,11 +22,11 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-3 text-left font-bold uppercase tracking-wider text-xs">ID</th>
-                        <th class="px-6 py-3 text-left font-bold uppercase tracking-wider text-xs">{{ __('Имя') }}</th>
-                        <th class="px-6 py-3 text-left font-bold uppercase tracking-wider text-xs">{{ __('Описание') }}</th>
-                        <th class="px-6 py-3 text-left font-bold uppercase tracking-wider text-xs">{{ __('Дата создания') }}</th>
+                        <th class="px-6 py-3 text-left font-bold uppercase tracking-wider text-xs">{{ __('views.attributes.name') }}</th>
+                        <th class="px-6 py-3 text-left font-bold uppercase tracking-wider text-xs">{{ __('views.attributes.description') }}</th>
+                        <th class="px-6 py-3 text-left font-bold uppercase tracking-wider text-xs">{{ __('views.attributes.date') }}</th>
                         @auth
-                            <th class="px-6 py-3 text-left font-bold uppercase tracking-wider text-xs">{{ __('Действия') }}</th>
+                            <th class="px-6 py-3 text-left font-bold uppercase tracking-wider text-xs">{{ __('views.attributes.actions') }}</th>
                         @endauth
                     </tr>
                 </thead>
@@ -45,10 +45,10 @@
                                         <a href="{{ route('labels.destroy', $label) }}" 
                                            onclick="event.preventDefault(); if(confirm('{{ __('Вы уверены?') }}')) { this.closest('form').submit(); }"
                                            class="text-red-600 hover:text-red-900 font-medium no-underline cursor-pointer mr-3">
-                                            {{ __('Удалить') }}
+                                            {{ __('views.buttons.delete') }}
                                         </a>
                                     </form>
-                                    <a href="{{ route('labels.edit', $label) }}" class="text-blue-600 hover:text-blue-900 font-medium no-underline">{{ __('Изменить') }}</a>
+                                    <a href="{{ route('labels.edit', $label) }}" class="text-blue-600 hover:text-blue-900 font-medium no-underline">{{ __('views.buttons.update') }}</a>
                                 </td>
                             @endauth
                         </tr>

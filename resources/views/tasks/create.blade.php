@@ -50,16 +50,20 @@
                 @error('assigned_to_id') <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span> @enderror
             </div>
 
-            <!-- МЕТКИ -->
-            <div>
-                <label for="labels" class="block text-sm font-medium text-gray-700 mb-1">{{ __('views.attributes.labels') }}</label>
-                <select name="labels[]" id="labels" multiple class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm h-32 p-2">
+            <!-- Метки задачи -->
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">{{ __('views.attributes.labels') }}</label>
+                <div class="grid grid-cols-2 gap-2 bg-gray-50 p-3 rounded border border-gray-200">
                     @foreach($labels as $id => $name)
-                        <option value="{{ $id }}" {{ (is_array(old('labels')) && in_array($id, old('labels'))) ? 'selected' : '' }}>{{ $name }}</option>
+                        <div class="flex items-center">
+                            <input type="checkbox" name="labels[]" value="{{ $id }}" id="label_{{ $id }}"
+                                class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                {{ is_array(old('labels')) && in_array($id, old('labels')) ? 'checked' : '' }}>
+                            <label for="label_{{ $id }}" class="ml-2 text-sm text-gray-600">{{ $name }}</label>
+                        </div>
                     @endforeach
-                </select>
+                </div>
             </div>
-
 
             <!-- Кнопка -->
             <div class="pt-2">

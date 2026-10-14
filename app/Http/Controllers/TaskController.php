@@ -22,29 +22,18 @@ class TaskController extends Controller
         // Получаем списки для выпадающих меню фильтра [id => name]
         $statuses = TaskStatus::pluck('name', 'id');
         $users = User::pluck('name', 'id');
-        $labels = Label::pluck('name', 'id');
 
-        $filters = array_filter($request->input('filter', []), function ($value) {
-            return $value !== null && $value !== '';
-        });
-
-        // Подменяем очищенный массив в запрос, чтобы Spatie видел только заполненные поля
-        $request->merge(['filter' => $filters]);
-
-        // Используем QueryBuilder вместо обычного Task::query()
         $tasks = QueryBuilder::for(Task::class)
             ->with(['status', 'creator', 'assignee', 'labels'])
             ->allowedFilters(
-                AllowedFilter::exact('status_id'),
-                AllowedFilter::exact('created_by_id'),
-                AllowedFilter::exact('assigned_to_id'),
-                // Фильтрация по меткам через связующую таблицу (многие-ко-многим)
-                AllowedFilter::exact('labels', 'labels.id'),
+                AllowedFilter::exact('status_id')->ignore(''),
+                AllowedFilter::exact('created_by_id')->ignore(''),
+                AllowedFilter::exact('assigned_to_id')->ignore(''),
             )
             ->paginate(15)
             ->withQueryString();
 
-        return view('tasks.index', compact('tasks', 'statuses', 'users', 'labels'));
+        return view('tasks.index', compact('tasks', 'statuses', 'users'));
     }
 
     /**

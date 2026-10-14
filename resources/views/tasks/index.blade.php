@@ -12,8 +12,8 @@
             <form method="GET" action="{{ route('tasks.index') }}" class="flex flex-wrap items-center gap-2 bg-transparent p-0 border-0">
                 
                 <!-- Статус -->
-                <div class="w-40">
-                    <select name="filter[status_id]" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2">
+                <div class="w-48">
+                    <select name="filter[status_id]" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm py-2">
                         <option value="">{{ __('views.attributes.status') }}</option>
                         @foreach($statuses as $id => $name)
                             <option value="{{ $id }}" {{ request()->input('filter.status_id') == $id ? 'selected' : '' }}>{{ $name }}</option>
@@ -22,18 +22,18 @@
                 </div>
 
                 <!-- Автор -->
-                <div class="w-40">
-                    <select name="filter[created_by_id]" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2">
-                        <option value="">{{ __('Автор') }}</option>
+                <div class="w-64">
+                    <select name="filter[created_by_id]" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm py-2">
+                        <option value="">{{ __('views.attributes.author') }}</option>
                         @foreach($users as $id => $name)
                             <option value="{{ $id }}" {{ request()->input('filter.created_by_id') == $id ? 'selected' : '' }}>{{ $name }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <!-- views.attributes.assigned_to -->
-                <div class="w-40">
-                    <select name="filter[assigned_to_id]" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2">
+                <!-- Исполнитель -->
+                <div class="w-64">
+                    <select name="filter[assigned_to_id]" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm py-2">
                         <option value="">{{ __('views.attributes.assigned_to') }}</option>
                         @foreach($users as $id => $name)
                             <option value="{{ $id }}" {{ request()->input('filter.assigned_to_id') == $id ? 'selected' : '' }}>{{ $name }}</option>
@@ -41,19 +41,9 @@
                     </select>
                 </div>
 
-                <!-- Метки -->
-                <div class="w-40">
-                    <select name="filter[labels]" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2">
-                        <option value="">{{ __('views.attributes.labels') }}</option>
-                        @foreach($labels as $id => $name)
-                            <option value="{{ $id }}" {{ request()->input('filter.labels') == $id ? 'selected' : '' }}>{{ $name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
                 <!-- Кнопка Применить -->
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow text-sm font-medium transition whitespace-nowrap shadow-sm">
-                    {{ __('Применить') }}
+                    {{ __('views.buttons.apply') }}
                 </button>
 
                 <!-- Кнопка Создать задачу -->

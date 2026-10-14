@@ -52,14 +52,20 @@
             </div>
 
             <!-- МЕТКИ -->
-            <div>
-            <label for="labels" class="block text-sm font-medium text-gray-700 mb-1">{{ __('views.attributes.labels') }}</label>
-            <select name="labels[]" id="labels" multiple class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm h-32 p-2">
-                @foreach($labels as $id => $name)
-                    <option value="{{ $id }}" {{ (is_array(old('labels', $task->labels->pluck('id')->toArray())) && in_array($id, old('labels', $task->labels->pluck('id')->toArray()))) ? 'selected' : '' }}>{{ $name }}</option>
-                @endforeach
-            </select>
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">{{ __('views.attributes.labels') }}</label>
+                <div class="grid grid-cols-2 gap-2 bg-gray-50 p-3 rounded border border-gray-200">
+                    @foreach($labels as $id => $name)
+                        <div class="flex items-center">
+                            <input type="checkbox" name="labels[]" value="{{ $id }}" id="label_{{ $id }}"
+                                class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                {{ in_array($id, old('labels', $task->labels->pluck('id')->toArray())) ? 'checked' : '' }}>
+                            <label for="label_{{ $id }}" class="ml-2 text-sm text-gray-600">{{ $name }}</label>
+                        </div>
+                    @endforeach
+                </div>
             </div>
+
 
             <!-- Кнопка -->
             <div class="pt-2">

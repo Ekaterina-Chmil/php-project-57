@@ -8,35 +8,19 @@
 
         {{-- Карточка формы --}}
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
-            <form method="POST" action="{{ route('labels.store') }}" class="space-y-4" novalidate>
-                @csrf
+            {{-- Открываем форму Spatie для создания метки --}}
+            {{ html()->form('POST', route('labels.store'))->class('space-y-4')->novalidate() }}
 
-            <!-- Имя метки -->
-            <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">{{ __('views.attributes.name') }}</label>
-                <input type="text" name="name" id="name" value="{{ old('name') }}" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm" required>
-                @error('name')
-                    <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
-                @enderror
-            </div>
+                {{-- Вставляем общий подшаблон --}}
+                @include('labels._form')
 
-            <!-- Описание метки -->
-            <div>
-                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">{{ __('views.attributes.description') }}</label>
-                <textarea name="description" id="description" rows="4" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm">{{ old('description') }}</textarea>
-                @error('description')
-                    <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
-                @enderror
-            </div>
+                <!-- Кнопка -->
+                <div class="pt-2">
+                    {{ html()->submit(__('views.buttons.create'))->class('bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition text-sm shadow-sm') }}
+                </div>
 
-            <!-- Кнопка -->
-            <div class="pt-2">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition text-sm shadow-sm">
-                    {{ __('views.buttons.create') }}
-                </button>
-            </div>
-        </form>
+            {{ html()->form()->close() }}
+        </div>
     </div>
-</div>
 </div>
 @endsection

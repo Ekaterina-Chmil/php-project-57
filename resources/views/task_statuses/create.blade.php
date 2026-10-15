@@ -7,26 +7,19 @@
         <h1 class="text-4xl font-bold mb-6 text-stone-700">{{ __('views.statuses.create') }}</h1>
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
-            <form method="POST" action="{{ route('task_statuses.store') }}" class="space-y-4" novalidate>
-                @csrf
+            {{-- Открываем форму Spatie для создания статуса --}}
+            {{ html()->form('POST', route('task_statuses.store'))->class('space-y-4')->novalidate() }}
 
-        <!-- Имя статуса -->
-        <div>
-            <label for="name" class="block font-medium text-sm text-gray-700">{{ __('views.attributes.name') }}</label>
-            <input type="text" name="name" id="name" value="{{ old('name') }}" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full" required>
-            @error('name')
-                <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span>
-            @enderror
-        </div>
+                {{-- Вставляем поле имени --}}
+                @include('task_statuses._form')
 
-        <!-- Кнопка отправки -->
-        <div class="pt-4">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                {{ __('views.buttons.create') }}
-            </button>
+                <!-- Кнопка отправки -->
+                <div class="pt-4">
+                    {{ html()->submit(__('views.buttons.create'))->class('bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline') }}
+                </div>
+
+            {{ html()->form()->close() }}
         </div>
-    </form>
-</div>
-</div>
+    </div>
 </div>
 @endsection

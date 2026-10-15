@@ -9,69 +9,20 @@
 
         <!-- БЕЛАЯ КАРТОЧКА СЛЕВА -->
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
-            <form method="POST" action="{{ route('tasks.store') }}" class="space-y-4" novalidate>
-                @csrf
+            {{-- Открываем форму Spatie для создания --}}
+            {{ html()->form('POST', route('tasks.store'))->class('space-y-4')->novalidate() }}
 
-            <!-- Имя -->
-            <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">{{ __('views.attributes.name') }}</label>
-                <input type="text" name="name" id="name" value="{{ old('name') }}" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm" required>
-                @error('name') <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span> @enderror
-            </div>
+                {{-- Подключаем общий подшаблон со всеми инпутами --}}
+                @include('tasks._form')
 
-            <!-- Описание -->
-            <div>
-                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">{{ __('views.attributes.description') }}</label>
-                <textarea name="description" id="description" rows="4" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm">{{ old('description') }}</textarea>
-                @error('description') <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span> @enderror
-            </div>
-
-            <!-- Статус -->
-            <div>
-                <label for="status_id" class="block text-sm font-medium text-gray-700 mb-1">{{ __('views.attributes.status') }}</label>
-                <select name="status_id" id="status_id" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2" required>
-                    <option value=""></option>
-                    @foreach($statuses as $id => $name)
-                        <option value="{{ $id }}" {{ old('status_id') == $id ? 'selected' : '' }}>{{ $name }}</option>
-                    @endforeach
-                </select>
-                @error('status_id') <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span> @enderror
-            </div>
-
-            <!-- Исполнитель -->
-            <div>
-                <label for="assigned_to_id" class="block text-sm font-medium text-gray-700 mb-1">{{ __('views.attributes.assigned_to') }}</label>
-                <select name="assigned_to_id" id="assigned_to_id" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2">
-                    <option value=""></option>
-                    @foreach($users as $id => $name)
-                        <option value="{{ $id }}" {{ old('assigned_to_id') == $id ? 'selected' : '' }}>{{ $name }}</option>
-                    @endforeach
-                </select>
-                @error('assigned_to_id') <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span> @enderror
-            </div>
-
-            <!-- Метки задачи -->
-            <div class="space-y-2">
-                <label class="block text-sm font-medium text-gray-700">{{ __('views.attributes.labels') }}</label>
-                <div class="grid grid-cols-2 gap-2 bg-gray-50 p-3 rounded border border-gray-200">
-                    @foreach($labels as $id => $name)
-                        <div class="flex items-center">
-                            <input type="checkbox" name="labels[]" value="{{ $id }}" id="label_{{ $id }}"
-                                class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                                {{ is_array(old('labels')) && in_array($id, old('labels')) ? 'checked' : '' }}>
-                            <label for="label_{{ $id }}" class="ml-2 text-sm text-gray-600">{{ $name }}</label>
-                        </div>
-                    @endforeach
+                <!-- Кнопка -->
+                <div class="pt-2">
+                    {{ html()->submit(__('views.buttons.create'))->class('bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition text-sm shadow-sm') }}
                 </div>
-            </div>
 
-            <!-- Кнопка -->
-            <div class="pt-2">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition text-sm shadow-sm">
-                    {{ __('views.buttons.create') }}
-                </button>
-            </div>
-        </form>
+            {{-- Закрываем форму --}}
+            {{ html()->form()->close() }}
+        </div>
     </div>
 </div>
 </div>

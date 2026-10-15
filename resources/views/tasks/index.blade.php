@@ -103,7 +103,7 @@
                         @auth
                             <td class="px-6 py-4 text-center whitespace-nowrap text-xs">
                                 <!-- Ссылка на изменение -->
-                                <a href="{{ route('tasks.edit', $task) }}" class="text-blue-600 hover:text-blue-900 font-medium no-underline">{{ __('views.buttons.update') }}</a>
+                                <a href="{{ route('tasks.edit', $task) }}" class="text-blue-600 hover:text-blue-900 font-medium no-underline">{{ __('views.buttons.edit') }}</a>
                                 
                                 <!-- Кнопка удаления в один ряд, показывается только создателю -->
                                 @if($task->created_by_id === auth()->id())

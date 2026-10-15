@@ -48,7 +48,7 @@
                                             {{ __('views.buttons.delete') }}
                                         </a>
                                     </form>
-                                    <a href="{{ route('labels.edit', $label) }}" class="text-blue-600 hover:text-blue-900 font-medium no-underline">{{ __('views.buttons.update') }}</a>
+                                    <a href="{{ route('labels.edit', $label) }}" class="text-blue-600 hover:text-blue-900 font-medium no-underline">{{ __('views.buttons.edit') }}</a>
                                 </td>
                             @endauth
                         </tr>

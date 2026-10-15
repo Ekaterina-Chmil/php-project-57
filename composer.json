@@ -13,6 +13,7 @@
         "laravel/tinker": "^3.0",
         "phpseclib/bcmath_compat": "^2.0",
         "sentry/sentry-laravel": "^4.27",
+        "spatie/laravel-html": "^3.13",
         "spatie/laravel-query-builder": "^7.3"
     },
     "require-dev": {

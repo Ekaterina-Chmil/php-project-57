@@ -39,7 +39,7 @@ class LabelController extends Controller
 
         Label::create($data);
 
-        flash(__('Метка успешно создана'))->success();
+        flash('Метка успешно создана')->success();
 
         return redirect()->route('labels.index');
     }
@@ -67,7 +67,7 @@ class LabelController extends Controller
 
         $label->update($data);
 
-        flash(__('Метка успешно изменена'))->success();
+        flash('Метка успешно изменена')->success();
 
         return redirect()->route('labels.index');
     }
@@ -79,15 +79,15 @@ class LabelController extends Controller
     {
         // Проверяем, привязана ли метка к задачам
         if ($label->tasks()->exists()) {
-            flash(__('Не удалось удалить метку'))->error();
+            flash('Не удалось удалить метку')->error();
             return redirect()->route('labels.index');
         }
 
         try {
             $label->delete();
-            flash(__('Метка успешно удалена'))->success();
+            flash('Метка успешно удалена')->success();
         } catch (\Illuminate\Database\QueryException $e) {
-            flash(__('Не удалось удалить метку'))->error();
+            flash('Не удалось удалить метку')->error();
         }
 
         return redirect()->route('labels.index');

@@ -41,7 +41,7 @@ class TaskStatusController extends Controller
         $taskStatus = TaskStatus::create($validated);
 
         // Показываем флеш-сообщение и перенаправляем на список
-        flash()->success('Статус успешно создан');
+        flash('Статус успешно создан')->success();
         return redirect()->route('task_statuses.index');
     }
 
@@ -78,16 +78,16 @@ class TaskStatusController extends Controller
     {
         // 1. Проверяем, есть ли задачи с этим статусом
         if ($taskStatus->tasks()->exists()) {
-            flash(__('Не удалось удалить статус'))->error();
+            flash('Не удалось удалить статус')->error();
             return redirect()->route('task_statuses.index');
         }
 
         // 2. Оборачиваем в try-catch для полной страховки от падения базы
         try {
             $taskStatus->delete();
-            flash(__('Статус успешно удалён'))->success();
+            flash('Статус успешно удалён')->success();
         } catch (\Illuminate\Database\QueryException $e) {
-            flash(__('Не удалось удалить статус'))->error();
+            flash('Не удалось удалить статус')->error();
         }
 
         return redirect()->route('task_statuses.index');

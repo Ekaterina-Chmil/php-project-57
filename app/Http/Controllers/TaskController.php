@@ -62,7 +62,7 @@ class TaskController extends Controller
             $task->labels()->sync($request->input('labels'));
         }
 
-        flash(__('Задача успешно создана'))->success();
+        flash('Задача успешно создана')->success();
 
             return redirect()->route('tasks.index');
     }
@@ -99,7 +99,7 @@ class TaskController extends Controller
         // Обновляем связи в связующей таблице
         $task->labels()->sync($request->input('labels', []));
 
-        flash(__('Задача успешно изменена'))->success();
+        flash('Задача успешно изменена')->success();
 
         return redirect()->route('tasks.index');
     }
@@ -114,7 +114,7 @@ class TaskController extends Controller
 
         $task->delete();
 
-        flash(__('Задача успешно удалена'))->success();
+        flash('Задача успешно удалена')->success();
 
         return redirect()->route('tasks.index');
     }

@@ -22,19 +22,19 @@ class Task extends Model
     // Связь: задача принадлежит статусу
     public function status(): BelongsTo
     {
-        return $this->belongsTo(TaskStatus::class, 'status_id');
+        return $this->belongsTo(TaskStatus::class);
     }
 
     // Связь: задача создана пользователем
-    public function creator(): BelongsTo
+    public function createdBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'created_by_id');
+        return $this->belongsTo(User::class);
     }
 
     // Связь: задача назначена пользователю
-    public function assignee(): BelongsTo
+    public function assignedTo(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'assigned_to_id');
+        return $this->belongsTo(User::class);
     }
     public function labels(): BelongsToMany
     {

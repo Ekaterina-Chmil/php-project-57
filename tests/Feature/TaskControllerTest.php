@@ -143,7 +143,7 @@ class TaskControllerTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->user)->get(route('tasks.index', ['filter' => ['status_id' => $this->status->id]]));
-        
+
         $response->assertOk();
         $response->assertSee($task->name);
     }

@@ -24,7 +24,7 @@ class TaskController extends Controller
         $users = User::pluck('name', 'id');
 
         $tasks = QueryBuilder::for(Task::class)
-            ->with(['status', 'creator', 'assignee', 'labels'])
+            ->with(['status', 'createdBy', 'assignedTo', 'labels'])
             ->allowedFilters(
                 AllowedFilter::exact('status_id')->ignore(''),
                 AllowedFilter::exact('created_by_id')->ignore(''),
@@ -55,10 +55,7 @@ class TaskController extends Controller
     {
         $data = $request->validated();
 
-        $task = new Task();
-        $task->fill($data);
-        $task->created_by_id = Auth::id();
-        $task->save();
+        $task = Auth::user()->createdTasks()->create($data);
 
         // Синхронизируем метки с задачей (если они были выбраны)
         if ($request->has('labels')) {

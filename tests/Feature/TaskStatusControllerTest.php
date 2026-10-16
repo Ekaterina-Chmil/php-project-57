@@ -40,7 +40,7 @@ class TaskStatusControllerTest extends TestCase
         $data = ['name' => 'В архиве'];
 
         $response = $this->actingAs($this->user)->post(route('task_statuses.store'), $data);
-        
+
         $response->assertRedirect(route('task_statuses.index'));
         $this->assertDatabaseHas('task_statuses', $data);
     }

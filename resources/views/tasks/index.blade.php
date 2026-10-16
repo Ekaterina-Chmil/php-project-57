@@ -90,11 +90,11 @@
                         <td class="px-6 py-4 text-blue-600 break-words font-medium">
                             <a href="{{ route('tasks.show', $task) }}" class="hover:underline">{{ $task->name }}</a>
                         </td>
-                        <td class="px-6 py-4 truncate text-gray-600" title="{{ $task->creator->name ?? '' }}">
-                            {{ $task->creator->name ?? '' }}
+                        <td class="px-6 py-4 truncate text-gray-600" title="{{ $task->createdBy->name ?? '' }}">
+                            {{ $task->createdBy->name ?? '' }}
                         </td>
-                        <td class="px-6 py-4 truncate text-gray-600" title="{{ $task->assignee->name ?? '—' }}">
-                            {{ $task->assignee->name ?? '—' }}
+                        <td class="px-6 py-4 truncate text-gray-600" title="{{ $task->assignedTo->name ?? '—' }}">
+                            {{ $task->assignedTo->name ?? '—' }}
                         </td>
                         <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
                             {{ $task->created_at->format('d.m.Y') }}

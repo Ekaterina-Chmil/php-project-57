@@ -90,7 +90,7 @@ class LabelControllerTest extends TestCase
     {
         // Создаем инфраструктуру для задачи
         $status = TaskStatus::factory()->create();
-        
+
         $task = Task::factory()->create([
             'status_id' => $status->id,
             'created_by_id' => $this->user->id,

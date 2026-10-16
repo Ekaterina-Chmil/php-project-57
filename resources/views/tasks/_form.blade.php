@@ -15,14 +15,16 @@
 <!-- Статус -->
 <div>
     {{ html()->label(__('views.attributes.status'), 'status_id')->class('block text-sm font-medium text-gray-700 mb-1') }}
-    {{ html()->select('status_id', $statuses)->id('status_id')->placeholder('')->class('rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2')->required() }}
+    {{-- Добавляем ->options() с явным приведением к массиву --}}
+    {{ html()->select('status_id')->id('status_id')->options(collect($statuses)->toArray())->placeholder('')->class('rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2')->required() }}
     @error('status_id') <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span> @enderror
 </div>
 
 <!-- Исполнитель -->
 <div>
     {{ html()->label(__('views.attributes.assigned_to'), 'assigned_to_id')->class('block text-sm font-medium text-gray-700 mb-1') }}
-    {{ html()->select('assigned_to_id', $users)->id('assigned_to_id')->placeholder('')->class('rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2') }}
+    {{-- Добавляем ->options() с явным приведением к массиву --}}
+    {{ html()->select('assigned_to_id')->id('assigned_to_id')->options(collect($users)->toArray())->placeholder('')->class('rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2') }}
     @error('assigned_to_id') <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span> @enderror
 </div>
 
@@ -32,7 +34,7 @@
     <div class="grid grid-cols-2 gap-2 bg-gray-50 p-3 rounded border border-gray-200">
         @foreach($labels as $id => $name)
             <div class="flex items-center">
-                {{-- Метод ->value($id) передает ID метки, а Spatie сам проверит связи и поставит checked, если метка привязана к задаче --}}
+                {{-- Явно передаем name как 'labels[]', чтобы Laravel Breeze/Fortify обработал это как массив чекбоксов --}}
                 {{ html()->checkbox('labels[]')->value($id)->id('label_' . $id)->class('rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50') }}
                 {{ html()->label($name, 'label_' . $id)->class('ml-2 text-sm text-gray-600') }}
             </div>

@@ -8,7 +8,7 @@
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
             {{-- Открываем форму Spatie для создания статуса --}}
-            {{ html()->form('POST', route('task_statuses.store'))->attribute('novalidate', 'novalidate')->class('space-y-4') }}
+            {{ html()->form('POST', route('task_statuses.store'))->class('space-y-4')->novalidate() }}
 
                 {{-- Вставляем поле имени --}}
                 @include('task_statuses._form')

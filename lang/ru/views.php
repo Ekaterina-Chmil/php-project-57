@@ -3,6 +3,7 @@
 return [
     'attributes' => [
         'name' => 'Имя',
+        'status_name' => 'Наименование',
         'description' => 'Описание',
         'status' => 'Статус',
         'author' => 'Автор',

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             // Внешние ключи (связи с другими таблицами)
             $table->foreignId('status_id')->constrained('task_statuses')->onDelete('restrict');
-            $table->foreignId('created_by_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('created_by_id')->constrained('users')->onDelete('restrict');
             $table->foreignId('assigned_to_id')->nullable()->constrained('users')->onDelete('set null');
 
             $table->timestamps();

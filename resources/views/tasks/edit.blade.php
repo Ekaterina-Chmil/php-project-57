@@ -10,7 +10,7 @@
         <!-- БЕЛАЯ КАРТОЧКА СЛЕВА -->
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
             {{-- Открываем форму Spatie, связываем её с моделью и указываем метод PATCH --}}
-            {{ html()->modelForm($task, 'PATCH', route('tasks.update', $task))->class('space-y-4')->novalidate() }}
+            {{ html()->modelForm($task, 'PATCH', route('tasks.update', $task))->class('space-y-4')->novalidate()->open() }}
 
                 {{-- Подключаем ТОТ ЖЕ САМЫЙ подшаблон --}}
                 @include('tasks._form')

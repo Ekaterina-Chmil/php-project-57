@@ -9,7 +9,7 @@
         {{-- Карточка формы --}}
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
             {{-- Открываем форму Spatie для создания метки --}}
-            {{ html()->form('POST', route('labels.store'))->class('space-y-4')->novalidate() }}
+            {{ html()->form('POST', route('labels.store'))->attribute('novalidate', 'novalidate')->class('space-y-4')->open() }}
 
                 {{-- Вставляем общий подшаблон --}}
                 @include('labels._form')

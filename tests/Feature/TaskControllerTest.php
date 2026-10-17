@@ -137,7 +137,7 @@ class TaskControllerTest extends TestCase
 
     public function testIndexFilters(): void
     {
-        $task = \App\Models\Task::factory()->create([
+        $task = Task::factory()->create([
             'status_id' => $this->status->id,
             'created_by_id' => $this->user->id,
         ]);

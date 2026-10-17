@@ -15,16 +15,14 @@
 <!-- Статус -->
 <div>
     {{ html()->label(__('views.attributes.status'), 'status_id')->class('block text-sm font-medium text-gray-700 mb-1') }}
-    {{-- Добавляем ->options() с явным приведением к массиву --}}
-    {{ html()->select('status_id')->id('status_id')->placeholder('')->class('rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2')->required() }}
+    {{ html()->select('status_id')->id('status_id')->options($statuses)->placeholder('')->class('rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2')->required() }}
     @error('status_id') <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span> @enderror
 </div>
 
 <!-- Исполнитель -->
 <div>
     {{ html()->label(__('views.attributes.assigned_to'), 'assigned_to_id')->class('block text-sm font-medium text-gray-700 mb-1') }}
-    {{-- Добавляем ->options() с явным приведением к массиву --}}
-    {{ html()->select('assigned_to_id')->id('assigned_to_id')->placeholder('')->class('rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2') }}
+    {{ html()->select('assigned_to_id')->id('assigned_to_id')->options($users)->placeholder('')->class('rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full text-sm py-2') }}
     @error('assigned_to_id') <span class="text-red-600 text-sm mt-1 block">{{ $message }}</span> @enderror
 </div>
 

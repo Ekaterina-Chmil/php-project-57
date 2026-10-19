@@ -16,6 +16,15 @@
         <include>
             <directory>app</directory>
         </include>
+        <exclude>
+        <directory>./app/Http/Controllers/Auth</directory>
+        <directory>./app/Http/Requests/Auth</directory>
+        <directory>./app/Providers</directory>
+        <directory>./app/Http/Middleware</directory>
+        <directory>./app/View/Components</directory>
+        <file>./app/Http/Controllers/ProfileController.php</file>
+        <file>./app/Http/Requests/ProfileUpdateRequest.php</file>
+    </exclude>
     </source>
     <php>
         <env name="APP_ENV" value="testing"/>

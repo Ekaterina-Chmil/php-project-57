@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use App\Models\TaskStatus;
+use App\Models\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -75,5 +76,19 @@ class TaskStatusControllerTest extends TestCase
 
         $response->assertRedirect(route('task_statuses.index'));
         $this->assertDatabaseMissing('task_statuses', ['id' => $status->id]);
+    }
+    // 7. Тест: НЕЛЬЗЯ удалить статус, если к нему привязана задача
+    public function testDestroyStatusWithTaskFails(): void
+    {
+        $status = TaskStatus::factory()->create();
+        // Создаем задачу с этим статусом
+        Task::factory()->create(['status_id' => $status->id]);
+
+        $response = $this->actingAs($this->user)->delete(route('task_statuses.destroy', $status));
+
+        // Проверяем, что в сессии появилась ошибка или произошел редирект назад
+        $response->assertRedirect();
+        // Проверяем, что статус остался в базе данных невредимым
+        $this->assertDatabaseHas('task_statuses', ['id' => $status->id]);
     }
 }

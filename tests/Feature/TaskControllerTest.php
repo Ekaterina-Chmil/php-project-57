@@ -134,7 +134,7 @@ class TaskControllerTest extends TestCase
         // Проверяем, что задача осталась в базе данных невредимой
         $this->assertDatabaseHas('tasks', ['id' => $task->id]);
     }
-
+    // 9. Тест фильтрации списка задач
     public function testIndexFilters(): void
     {
         $task = Task::factory()->create([

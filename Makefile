@@ -26,4 +26,4 @@ lint-fix:
 	composer exec phpcbf -- --standard=PSR12 app routes config database
 
 test-coverage:
-	XDEBUG_MODE=coverage php artisan test --log-junit=tests/report.xml --coverage-clover=tests/coverage.xml
+	XDEBUG_MODE=coverage php artisan test --coverage

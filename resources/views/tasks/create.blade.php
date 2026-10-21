@@ -10,7 +10,7 @@
         <!-- БЕЛАЯ КАРТОЧКА СЛЕВА -->
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border border-gray-200 max-w-2xl">
             {{-- Открываем форму Spatie для создания --}}
-            {{ html()->form('POST', route('tasks.store'))->attribute('novalidate', 'novalidate')->class('space-y-4')->open() }}
+            {{ html()->modelForm($task, 'POST', route('tasks.store'))->attribute('novalidate', 'novalidate')->class('space-y-4')->open() }}
 
 
                 {{-- Подключаем общий подшаблон со всеми инпутами --}}

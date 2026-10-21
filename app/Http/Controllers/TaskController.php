@@ -41,11 +41,12 @@ class TaskController extends Controller
      */
     public function create()
     {
+        $task = new Task(); // Создаем пустой объект
         $statuses = TaskStatus::pluck('name', 'id');
         $users = User::pluck('name', 'id');
         $labels = Label::pluck('name', 'id');
 
-        return view('tasks.create', compact('statuses', 'users', 'labels'));
+        return view('tasks.create', compact('task', 'statuses', 'users', 'labels'));
     }
 
     /**
